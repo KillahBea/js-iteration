@@ -63,7 +63,9 @@
  * }
  */
 
-// ...
+const yelling = words => {
+  return words.map(element => element.toUpperCase())
+}
 
 /**
  *
@@ -72,7 +74,11 @@
  * the numbers multiplied by 2
  */
 
-// ...
+const doubleTrouble = number => {
+  return number.map(number => {
+    return number * 2
+  })
+}
 
 /*
  * Define a function stringyIndexes() that takes an array of
@@ -80,14 +86,19 @@
  * suffixed with " is at index X" where X is the index of the element
  */
 
-// ...
+const stringyIndexes = array => {
+  const newArray = array.map((x, y) => `${x} is at index ${y}`)
+  return newArray
+}
 
 /*
  * Define a function onlyTheEvenSurvive that accepts an array of
  * numbers and returns only the elements that are even
  */
 
-// ...
+// const onlyTheEvenSurvive = number => {
+//   return numbers.filter(number => % 2 === 0)
+// }
 
 /*
  * Define a function onlyTheEvenIndexedSurvive that accepts an array of
@@ -103,6 +114,7 @@
  *
  * A movie object looks like this:
  *
+ *
  * {
  *   name: "Get Out",
  *   year: "2017",
@@ -110,8 +122,22 @@
  * }
  */
 
-// ...
+// const bestMoviesOfTheYear = (movies, year) => {
+//   const rv = movies.filer (movie +> {
+//     return movie.year === year && moveBy.score > 90
+//   })
+//   .map(movie => {
+//     return movie.name
+//   })
 
+//   console.log('filterd', year, rv)
+//   return rv
+// }
+
+// const rv = movies.filer(movie => movie.year === year && movie.score > 90).map(movie => movie.name)
+
+// console.log('filtered', year, rv)
+// return rv
 /*
  * Define a function everyoneIsOdd that accepts an array of
  * numbers and returns true if every element of the array is
@@ -134,7 +160,12 @@
  *  the word `needle` inside
  */
 
-// ...
+const findTheNeedle = words => {
+  console.log('words=', words)
+  const rv = words.filter(words => {
+    return words.includes('needle')
+  })
+}
 
 /*
  * Define a function someoneToLove that accepts an array of
@@ -189,18 +220,15 @@ import test from 'ava'
 
 const ensureDefined = (t, method) => {
   if (eval(`typeof ${method}`) !== 'function') {
-    t.fail(`\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`)
+    t.fail(
+      `\n\n\n\n\n⚡️⚡️⚡️⚡️⚡️ The next step is to define the function ${method} ⚡️⚡️⚡️⚡️⚡️\n\n\n`
+    )
   }
 }
 
 test('Function Check', t => ensureDefined(t, 'yelling'))
 test('yelling()', t => {
-  t.deepEqual(yelling(['now', 'is', 'the', 'time']), [
-    'NOW',
-    'IS',
-    'THE',
-    'TIME'
-  ])
+  t.deepEqual(yelling(['now', 'is', 'the', 'time']), ['NOW', 'IS', 'THE', 'TIME'])
 })
 
 test('Function Check', t => ensureDefined(t, 'doubleTrouble'))
@@ -220,12 +248,7 @@ test('stringyIndexes', t => {
 
 test('Function Check', t => ensureDefined(t, 'onlyTheEvenSurvive'))
 test('onlyTheEvenSurvive', t => {
-  t.deepEqual(onlyTheEvenSurvive([42, 50, 100, 5, -43, 17, 44]), [
-    42,
-    50,
-    100,
-    44
-  ])
+  t.deepEqual(onlyTheEvenSurvive([42, 50, 100, 5, -43, 17, 44]), [42, 50, 100, 44])
 })
 
 test('Function Check', t => ensureDefined(t, 'onlyTheEvenIndexedSurvive'))
@@ -274,29 +297,7 @@ test('onlyTheEvenIndexedSurvive', t => {
       22,
       72
     ]),
-    [
-      31,
-      64,
-      14,
-      43,
-      48,
-      58,
-      64,
-      98,
-      69,
-      5,
-      29,
-      28,
-      86,
-      20,
-      35,
-      85,
-      65,
-      56,
-      93,
-      29,
-      72
-    ]
+    [31, 64, 14, 43, 48, 58, 64, 98, 69, 5, 29, 28, 86, 20, 35, 85, 65, 56, 93, 29, 72]
   )
 })
 
@@ -313,10 +314,7 @@ test('bestMoviesOfTheYear', t => {
     { name: 'The Big Sick', year: 2017, score: 98 }
   ]
 
-  t.deepEqual(bestMoviesOfTheYear(movies, 2014), [
-    'The Grand Budapest Hotel',
-    'Birdman'
-  ])
+  t.deepEqual(bestMoviesOfTheYear(movies, 2014), ['The Grand Budapest Hotel', 'Birdman'])
 
   t.deepEqual(bestMoviesOfTheYear(movies, 2017), ['Get Out', 'The Big Sick'])
 
@@ -339,10 +337,7 @@ test('findTheNeedle', t => {
 
 test('Function Check', t => ensureDefined(t, 'findTheNeedleIndex'))
 test('findTheNeedleIndex', t => {
-  t.is(
-    findTheNeedleIndex(['one', 'time', 'there was a needle at', 'the market']),
-    2
-  )
+  t.is(findTheNeedleIndex(['one', 'time', 'there was a needle at', 'the market']), 2)
 })
 
 test('Function Check', t => ensureDefined(t, 'someoneToLove'))
